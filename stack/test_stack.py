@@ -45,6 +45,23 @@ class TestStack(unittest.TestCase):
         s.push(5)
         self.assertEqual(s.peek(), 5)
 
+    def test_str_empty(self):
+        s = stack.Stack()
+        self.assertEqual(str(s), "[]")
+
+    def test_str_non_empty(self):
+        s = stack.Stack()
+        s.push(6)
+        s.push(3)
+        s.push(8)
+        self.assertEqual(str(s), "[6, 3, 8]")
+
+    def test_is_empty_function(self):
+        s = stack.Stack()
+        self.assertEqual(s.is_empty(), True)
+        s.push(8)
+        self.assertEqual(s.is_empty(), False)
+
 
 if __name__ == "__main__":
     unittest.main()

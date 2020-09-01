@@ -6,6 +6,15 @@ class Stack():
     def __len__(self):
         return len(self.stack)
 
+    def __str__(self):
+        return str(self.stack)
+
+    def is_empty(self):
+        if not len(self.stack):
+            return True
+        else:
+            return False
+
     def push(self, item):
         self.stack.append(item)
 
