@@ -19,6 +19,9 @@ class LinkedList():
         return length
 
     def insert_beginning(self, node):
-        if not self.head:
+        if self.head is None:
             self.head = node
             node.next = None
+        else:
+            node.next = self.head
+            self.head = node
