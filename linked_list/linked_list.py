@@ -46,3 +46,20 @@ class LinkedList():
                     current_node.next = node
                     break
                 current_node = current_node.next
+
+    def delete_beginning(self):
+        if self.head is None:
+            raise EmptyListError
+        else:
+            new_head = self.head.next
+            self.head = new_head
+
+
+class EmptyListError(Exception):
+
+    def __init__(self, message="cannot perform this operation on empty list"):
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return self.message
