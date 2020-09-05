@@ -61,6 +61,24 @@ class LinkedList():
             new_head = self.head.next
             self.head = new_head
 
+    def delete_node(self, node):
+        if self.head is None:
+            raise EmptyListError
+        elif self.head is node:
+            self.head = None
+            return True
+        else:
+            current_node = self.head
+            previous_node = None
+            while current_node is not None:
+                previous_node = current_node
+                current_node = current_node.next
+                if current_node is node:
+                    previous_node.next = current_node.next
+                    current_node.next = None
+                    return True
+            raise ItemNotInListError
+
     def is_node_in_list(self, node):
         current_node = self.head
         while current_node is not None:

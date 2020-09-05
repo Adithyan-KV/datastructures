@@ -104,6 +104,45 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(len(l), 1)
         self.assertEqual(l.head, n3)
 
+    def test_delete_node_from_empty_list(self):
+        l = linked_list.LinkedList()
+        n1 = linked_list.Node(1)
+        self.assertRaises(linked_list.EmptyListError, l.delete_node, n1)
+
+    def test_delete_node_from_single_item_list(self):
+        l = linked_list.LinkedList()
+        n1 = linked_list.Node(1)
+        l.insert_beginning(n1)
+        l.delete_node(n1)
+        self.assertEqual(l.head, None)
+
+    def test_delete_node_not_in_list(self):
+        l = linked_list.LinkedList()
+        n1 = linked_list.Node(1)
+        n2 = linked_list.Node(2)
+        l.insert_beginning(n1)
+        self.assertRaises(linked_list.ItemNotInListError, l.delete_node, n2)
+
+    def test_delete_node_in_list(self):
+        l = linked_list.LinkedList()
+        n1 = linked_list.Node(1)
+        n2 = linked_list.Node(2)
+        n3 = linked_list.Node(3)
+        n4 = linked_list.Node(4)
+        l.insert_beginning(n1)
+        l.insert_end(n2)
+        l.insert_end(n3)
+        l.insert_end(n4)
+        # node at the end
+        l.delete_node(n4)
+        self.assertEqual(l.is_node_in_list(n4), False)
+        self.assertEqual(len(l), 3)
+        # node in the middle
+        l.delete_node(n2)
+        self.assertEqual(l.is_node_in_list(n2), False)
+        self.assertEqual(len(l), 2)
+        self.assertEqual(l.head.next, n3)
+
     def test_is_node_in_list(self):
         l = linked_list.LinkedList()
         n1 = linked_list.Node(1)
