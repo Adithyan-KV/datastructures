@@ -70,6 +70,14 @@ class LinkedList():
                 current_node = current_node.next
         return False
 
+    def get_node_by_key(self, key):
+        current_node = self.head
+        while current_node is not None:
+            if current_node.data == key:
+                return current_node
+            current_node = current_node.next
+        return None
+
 
 class EmptyListError(Exception):
 

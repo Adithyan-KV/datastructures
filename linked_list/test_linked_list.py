@@ -62,6 +62,7 @@ class TestLinkedList(unittest.TestCase):
         n1 = linked_list.Node(1)
         n2 = linked_list.Node(2)
         n3 = linked_list.Node(3)
+        l.insert_beginning(n1)
         self.assertRaises(linked_list.ItemNotInListError,
                           l.insert_after, n2, n3)
 
@@ -112,6 +113,22 @@ class TestLinkedList(unittest.TestCase):
         l.insert_beginning(n2)
         self.assertEqual(l.is_node_in_list(n1), True)
         self.assertEqual(l.is_node_in_list(n3), False)
+
+    def test_get_node_by_key_for_key_in_list(self):
+        l = linked_list.LinkedList()
+        n1 = linked_list.Node(1)
+        n2 = linked_list.Node(2)
+        l.insert_beginning(n1)
+        l.insert_end(n2)
+        self.assertEqual(l.get_node_by_key(2), n2)
+
+    def test_get_node_by_key_for_key_not_in_list(self):
+        l = linked_list.LinkedList()
+        n1 = linked_list.Node(1)
+        n2 = linked_list.Node(2)
+        l.insert_beginning(n1)
+        l.insert_end(n2)
+        self.assertEqual(l.get_node_by_key(3), None)
 
 
 if __name__ == "__main__":
