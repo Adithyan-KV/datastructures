@@ -6,11 +6,19 @@ class Node():
 
 
 class LinkedList():
+    """
+    A singly linked linked list object.
+    """
 
     def __init__(self):
         self.head = None
 
     def __len__(self):
+        """Get the number of nodes in the linked list
+
+        Returns:
+            int: the number of nodes in the list
+        """
         current_node = self.head
         length = 0
         while current_node:
@@ -19,6 +27,11 @@ class LinkedList():
         return length
 
     def __str__(self):
+        """generates a readable string representation of the linked list
+
+        Returns:
+            string: a string representation of the list
+        """
         current_node = self.head
         data_list = []
         string = ""
@@ -29,6 +42,11 @@ class LinkedList():
         return string.join(data_list)
 
     def insert_beginning(self, node):
+        """Insert a node to the beginning of the linked list
+
+        Args:
+            node (Node object): the node to be inserted
+        """
         if self.head is None:
             self.head = node
         else:
@@ -36,6 +54,11 @@ class LinkedList():
             self.head = node
 
     def insert_end(self, node):
+        """Insert a node at the end of the linked list
+
+        Args:
+            node (Node object): the node to be inserted
+        """
         if self.head is None:
             self.head = node
             node.next = None
@@ -48,6 +71,17 @@ class LinkedList():
                 current_node = current_node.next
 
     def insert_after(self, prev_node, node):
+        """Insert a node after a specified node in the list. Raises an error if
+        node is not in the list
+
+        Args:
+            prev_node (Node object): The node after which to insert the node
+            node (Node object): The node to be inserted
+
+        Raises:
+            ItemNotInListError: Raised when the specified node after which the 
+            node is to be inserted is not present in the list
+        """
         if self.is_node_in_list(prev_node):
             node.next = prev_node.next
             prev_node.next = node
@@ -55,6 +89,12 @@ class LinkedList():
             raise ItemNotInListError()
 
     def delete_beginning(self):
+        """Delete node at the beginning of the list
+
+        Raises:
+            EmptyListError: Raised when trying to delete from an already empty
+            list
+        """
         if self.head is None:
             raise EmptyListError
         else:
@@ -62,6 +102,19 @@ class LinkedList():
             self.head = new_head
 
     def delete_node(self, node):
+        """Delete a specified node from the linked list
+
+        Args:
+            node (Node object): The node to be deleted
+
+        Raises:
+            EmptyListError: Raised when trying to delete from an empty list
+            ItemNotInListError: Raised when the node to be deleted is not in 
+            the list
+
+        Returns:
+            Bool: Returns true on succesful deletion of node
+        """
         if self.head is None:
             raise EmptyListError
         elif self.head is node:
@@ -80,6 +133,14 @@ class LinkedList():
             raise ItemNotInListError
 
     def is_node_in_list(self, node):
+        """Checks if the specified node is in the list
+
+        Args:
+            node (Node object): The node to check for in the list
+
+        Returns:
+            Bool: Returns True if node is in the list and False otherwise
+        """
         current_node = self.head
         while current_node is not None:
             if current_node is node:
@@ -89,6 +150,15 @@ class LinkedList():
         return False
 
     def get_node_by_key(self, key):
+        """Get a node by the key value. If multiple nodes with the same key
+        value exist, only the first is returned
+
+        Args:
+            key (key): The key of the node
+
+        Returns:
+            Node Object: The node with the specified key
+        """
         current_node = self.head
         while current_node is not None:
             if current_node.data == key:
@@ -98,6 +168,9 @@ class LinkedList():
 
 
 class EmptyListError(Exception):
+    """Error raised when trying to do an operation that is not valid on an 
+    empty list.
+    """
 
     def __init__(self, message="cannot perform this operation on empty list"):
         self.message = message
@@ -108,6 +181,7 @@ class EmptyListError(Exception):
 
 
 class ItemNotInListError(Exception):
+    """Raised when an operation involves an item that is not in the list"""
 
     def __init__(self, message="node is not in list"):
         self.message = message
