@@ -47,6 +47,13 @@ class LinkedList():
                     break
                 current_node = current_node.next
 
+    def insert_after(self, prev_node, node):
+        if self.is_node_in_list(prev_node):
+            node.next = prev_node.next
+            prev_node.next = node
+        else:
+            raise ItemNotInListError()
+
     def delete_beginning(self):
         if self.head is None:
             raise EmptyListError
@@ -67,6 +74,16 @@ class LinkedList():
 class EmptyListError(Exception):
 
     def __init__(self, message="cannot perform this operation on empty list"):
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return self.message
+
+
+class ItemNotInListError(Exception):
+
+    def __init__(self, message="node is not in list"):
         self.message = message
         super().__init__(self.message)
 

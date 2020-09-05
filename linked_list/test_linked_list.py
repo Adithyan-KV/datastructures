@@ -46,6 +46,25 @@ class TestLinkedList(unittest.TestCase):
         l.insert_end(n2)
         self.assertEqual(len(l), 2)
 
+    def test_insert_after_item_in_list(self):
+        l = linked_list.LinkedList()
+        n1 = linked_list.Node(1)
+        n2 = linked_list.Node(2)
+        n3 = linked_list.Node(3)
+        l.insert_beginning(n1)
+        l.insert_end(n2)
+        l.insert_after(n1, n3)
+        self.assertEqual(len(l), 3)
+        self.assertEqual(l.head.next, n3)
+
+    def test_insert_after_item_not_in_list(self):
+        l = linked_list.LinkedList()
+        n1 = linked_list.Node(1)
+        n2 = linked_list.Node(2)
+        n3 = linked_list.Node(3)
+        self.assertRaises(linked_list.ItemNotInListError,
+                          l.insert_after, n2, n3)
+
     def test_str_empty_list(self):
         l = linked_list.LinkedList()
         self.assertEqual(str(l), "None")
