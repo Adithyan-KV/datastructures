@@ -54,6 +54,15 @@ class LinkedList():
             new_head = self.head.next
             self.head = new_head
 
+    def is_node_in_list(self, node):
+        current_node = self.head
+        while current_node is not None:
+            if current_node is node:
+                return True
+            else:
+                current_node = current_node.next
+        return False
+
 
 class EmptyListError(Exception):
 

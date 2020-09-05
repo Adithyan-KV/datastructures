@@ -84,6 +84,16 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(len(l), 1)
         self.assertEqual(l.head, n3)
 
+    def test_is_node_in_list(self):
+        l = linked_list.LinkedList()
+        n1 = linked_list.Node(1)
+        n2 = linked_list.Node(2)
+        n3 = linked_list.Node(3)
+        l.insert_beginning(n1)
+        l.insert_beginning(n2)
+        self.assertEqual(l.is_node_in_list(n1), True)
+        self.assertEqual(l.is_node_in_list(n3), False)
+
 
 if __name__ == "__main__":
     unittest.main()
