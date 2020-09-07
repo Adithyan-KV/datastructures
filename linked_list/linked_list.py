@@ -168,6 +168,29 @@ class LinkedList():
             current_node = current_node.next
         return None
 
+    def reverse_list(self):
+        """Reverses the linked list
+
+        Raises:
+            EmptyListError: Raised when trying to reverse an empty list
+
+        Returns:
+            Bool: Returns true upon succesful reversal of the list
+        """
+        if self.head is None:
+            raise EmptyListError
+        else:
+            current_node = self.head
+            previous_node = None
+            next_node = None
+            while current_node is not None:
+                next_node = current_node.next
+                current_node.next = previous_node
+                previous_node = current_node
+                current_node = next_node
+            self.head = previous_node
+            return True
+
 
 class EmptyListError(Exception):
     """Error raised when trying to do an operation that is not valid on an 

@@ -169,6 +169,30 @@ class TestLinkedList(unittest.TestCase):
         l.insert_end(n2)
         self.assertEqual(l.get_node_by_key(3), None)
 
+    def test_reverse_empty_list(self):
+        l = linked_list.LinkedList()
+        self.assertRaises(linked_list.EmptyListError, l.reverse_list)
+
+    def test_reverse_single_item_list(self):
+        l = linked_list.LinkedList()
+        n1 = linked_list.Node(1)
+        l.insert_beginning(n1)
+        l.reverse_list()
+        self.assertEqual(l.head, n1)
+
+    def test_reverse_multiple_item_list(self):
+        l = linked_list.LinkedList()
+        n1 = linked_list.Node(1)
+        n2 = linked_list.Node(2)
+        n3 = linked_list.Node(3)
+        l.insert_beginning(n1)
+        l.insert_end(n2)
+        l.insert_end(n3)
+        l.reverse_list()
+        self.assertEqual(l.head, n3)
+        self.assertEqual(l.head.next, n2)
+        self.assertEqual(l.head.next.next, n1)
+
 
 if __name__ == "__main__":
     unittest.main()
